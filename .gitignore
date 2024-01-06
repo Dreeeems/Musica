@@ -87,3 +87,5 @@ $RECYCLE.BIN/
 
 # Laravel Telescope
  telescope/
+*.gitignore
+ *.gitattributes
