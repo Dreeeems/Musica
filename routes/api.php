@@ -16,6 +16,8 @@ use  App\Http\Controllers\api\postController;
 
 Route::get('post', [postController::class, 'index']);
 
+Route::post('posts/create', [postController::class , 'store']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
