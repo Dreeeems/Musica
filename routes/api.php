@@ -14,7 +14,7 @@ use  App\Http\Controllers\api\postController;
 |
 */
 
-Route::get('post', [postController::class, 'index']);
+Route::get('posts', [postController::class, 'index']);
 
 Route::post('posts/create', [postController::class, 'store']);
 Route::put('posts/edit/{post}', [postController::class, 'update']);

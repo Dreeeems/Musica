@@ -12,7 +12,17 @@ class postController extends Controller
 {
     public function index()
     {
-        return 'Liste';
+
+        try {
+
+            return response()->json([
+                'status_code' => 200,
+                'status_message' => 'Get all posts !',
+                'data' => Posts::all()
+            ]);
+        } catch (Exception $e) {
+            return response($e);
+        }
     }
 
     public function store(CreatePostRequest $request)
