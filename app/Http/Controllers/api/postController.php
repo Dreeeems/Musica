@@ -7,13 +7,19 @@ use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\EditPostRequest;
 use App\Models\Posts;
 use Exception;
+use Illuminate\Http\Request;
 
 class postController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
 
+
+
+
+
         try {
+
 
             return response()->json([
                 'status_code' => 200,
