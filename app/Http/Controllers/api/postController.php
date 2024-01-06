@@ -4,8 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePostRequest;
-use Illuminate\Http\Request;
+use App\Http\Requests\EditPostRequest;
 use App\Models\Posts;
+use Exception;
 
 class postController extends Controller
 {
@@ -16,10 +17,43 @@ class postController extends Controller
 
     public function store(CreatePostRequest $request)
     {
+        try {
 
-        $post = new Posts();
-        $post->title = "titre exemple";
-        $post->description = "Desc exemple";
-        $post->save();
+            $post = new Posts();
+
+            $post->title = $request->title;
+            $post->description = $request->description;
+
+            $post->save();
+
+            return response()->json([
+                'status_code' => 200,
+                'status_message' => 'Post added !',
+                'data' => $post
+            ]);
+        } catch (Exception $e) {
+
+            return response()->json($e);
+        }
+    }
+
+    public function update(EditPostRequest $request, Posts $post)
+    {
+
+        try {
+
+            $post->title = $request->title;
+            $post->description = $request->description;
+
+            $post->save();
+
+            return response()->json([
+                'status_code' => 200,
+                'status_message' => 'The post has been successfully updated.',
+                'data' => $post
+            ]);
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
     }
 }
