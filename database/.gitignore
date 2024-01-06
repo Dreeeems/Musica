@@ -1,0 +1,71 @@
+*.sqlite*
+# Laravel
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+
+# PhpStorm
+.idea
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# VS Code
+.vscode
+*.code-workspace
+
+# Laravel Mix
+.mix
+
+# Laravel Forge
+forge-*
+
+
+# Laravel Dusk
+dusk-*.png
+
+# PHPUnit
+/phpunit.xml
+/phpunit-*.xml
+
+# phpbrew
+/.phpbrew
+
+# Rocketeer
+/rocketeer.phar
+
+# Homestead
+/Vagrantfile
+/.vagrant
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains IDEs
+.idea/
+
+# Laravel Telescope
+ telescope/
