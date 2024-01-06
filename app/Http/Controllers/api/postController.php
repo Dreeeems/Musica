@@ -44,12 +44,30 @@ class postController extends Controller
 
             $post->title = $request->title;
             $post->description = $request->description;
+            $post->updated_at = time();
 
             $post->save();
 
             return response()->json([
                 'status_code' => 200,
                 'status_message' => 'The post has been successfully updated.',
+                'data' => $post
+            ]);
+        } catch (Exception $e) {
+            return response()->json($e);
+        }
+    }
+
+    public function delete(Posts $post)
+    {
+        try {
+
+
+
+            $post->delete();
+            return response()->json([
+                'status_code' => 200,
+                'status_message' => 'The post has been successfully delete.',
                 'data' => $post
             ]);
         } catch (Exception $e) {
