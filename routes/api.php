@@ -18,12 +18,21 @@ use App\Http\Controllers\Api\UserController;
 
 Route::get('posts', [postController::class, 'index']);
 
-Route::post('posts/create', [postController::class, 'store']);
-Route::put('posts/edit/{post}', [postController::class, 'update']);
-Route::delete('posts/delete/{post}', [postController::class, 'delete']);
+
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+
+Route::middleware('auth:sanctum')->group(function () {
+
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+
+    Route::post('posts/create', [postController::class, 'store']);
+    Route::put('posts/edit/{post}', [postController::class, 'update']);
+    Route::delete('posts/delete/{post}', [postController::class, 'delete']);
 });

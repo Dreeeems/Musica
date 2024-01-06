@@ -39,6 +39,7 @@ class postController extends Controller
 
             $post->title = $request->title;
             $post->description = $request->description;
+            $post->user_id = auth()->user()->id;
 
             $post->save();
 
@@ -61,14 +62,19 @@ class postController extends Controller
             $post->title = $request->title;
             $post->description = $request->description;
             $post->updated_at = time();
-
-            $post->save();
-
-            return response()->json([
-                'status_code' => 200,
-                'status_message' => 'The post has been successfully updated.',
-                'data' => $post
-            ]);
+            if ($post->user_id == auth()->user()->id) {
+                $post->save();
+                return response()->json([
+                    'status_code' => 200,
+                    'status_message' => 'The post has been successfully updated.',
+                    'data' => $post
+                ]);
+            } else {
+                return response()->json([
+                    'status_code' => 422,
+                    'status_message' => 'NAN',
+                ]);
+            }
         } catch (Exception $e) {
             return response()->json($e);
         }
@@ -79,13 +85,20 @@ class postController extends Controller
         try {
 
 
-
-            $post->delete();
-            return response()->json([
-                'status_code' => 200,
-                'status_message' => 'The post has been successfully delete.',
-                'data' => $post
-            ]);
+            if ($post->user_id == auth()->user()->id) {
+                $post->delete();
+                return response()->json([
+                    'status_code' => 200,
+                    'status_message' => 'The post has been successfully delete.',
+                    'data' => $post
+                ]);
+            } else {
+                return response()->json([
+                    'status_code' => 422,
+                    'status_message' => 'NAN',
+                    'data' => $post
+                ]);
+            }
         } catch (Exception $e) {
             return response()->json($e);
         }
